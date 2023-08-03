@@ -15,7 +15,7 @@ export default function MyOrder() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: localStorage.getItem("userEmail"),
+        email: localStorage.getItem("userEmail"), //here email is send to the database to match with the database and give the data from the database
       }),
     }).then(async (res) => {
       let response = await res.json();
@@ -29,7 +29,7 @@ export default function MyOrder() {
 
   useEffect(() => {
     fetchMyOrder();
-  }, []);
+  }, []);//on first render fetchmyorder is call in useEffect this is the occur only one times not many times because here dependency is not availabel.
 
   return (
     <div>

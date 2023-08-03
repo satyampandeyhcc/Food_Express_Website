@@ -23,8 +23,8 @@ const handleCheckOut = async()=>{
     headers: {
       "Content-Type": "Application/json"
     },
-    body: JSON.stringify({
-      order_data: data,
+    body: JSON.stringify({ // we are not using axios here we used fetch keyword so we use json.stringify if we use axios then by axios ,they dirctly implement json.stringify.
+      order_data: data,//order_data is must same with the order_data in a cart
       email: userEmail,
       order_date: new Date().toDateString()
     })

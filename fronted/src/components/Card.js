@@ -22,6 +22,7 @@ export default function Card(props) {
     }
     //console.log(food)
     //console.log(new Date())
+    // Update functionality began
     if (food !== []) {
       if (food.size === size) {
         await dispatch({

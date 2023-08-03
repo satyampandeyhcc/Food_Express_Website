@@ -29,7 +29,7 @@ router.post("/orderData", async (req, res) => {
     try {
       await Order.findOneAndUpdate(
         { email: req.body.email },
-        { $push: { order_data: data } }
+        { $push: { order_data: data } }//$push is important because if we are not used then they update and not kept the previous data
       ).then(() => {
         res.json({ success: true });
       });
@@ -43,9 +43,9 @@ router.post("/orderData", async (req, res) => {
 router.post("/myOrderData", async (req, res) => {
   try {
     //console.log(req.body.email)
-    let eId = await Order.findOne({ email: req.body.email });
-    //console.log(eId)
-    res.json({ orderData: eId });
+    let myData = await Order.findOne({ email: req.body.email });
+    //console.log(myData)
+    res.json({ orderData: myData });
   } catch (error) {
     res.send("Error", error.message);
   }
