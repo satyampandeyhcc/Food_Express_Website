@@ -18,7 +18,7 @@ const reducer = (state, action) => {
         },
       ];
     case "REMOVE":
-      let newArr = [...state];
+      let newArr = [...state];//We do not directly remove the data  
       newArr.splice(action.index, 1);
       return newArr;
     case "UPDATE":
