@@ -56,7 +56,7 @@ if (response.status===200)
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr>
+              <tr> 
                 <th scope='row' >{index + 1}</th>
                 <td >{food.name}</td>
                 <td>{food.qty}</td>
