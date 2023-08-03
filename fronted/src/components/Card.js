@@ -93,7 +93,7 @@ export default function Card(props) {
                 })}
               </select>
               <select
-                className="m-2 h-100  bg-light rounded"
+                className="m-2 h-100  bg-light rounded"// bg-light
                 ref={priceRef}
                 onChange={(e) => setSize(e.target.value)}
               >
