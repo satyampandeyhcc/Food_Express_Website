@@ -4,7 +4,7 @@ const CartStateContext = createContext();
 const CartDispatchContext = createContext();
 
 const reducer = (state, action) => {
-  switch (action.type) {
+  switch (action.type) { // Defacto use like a market
     case "ADD":
       return [
         ...state,

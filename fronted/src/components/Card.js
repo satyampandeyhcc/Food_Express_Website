@@ -3,8 +3,8 @@ import { useDispatchCart, useCart } from "./ContextReducer";
 
 export default function Card(props) {
   let dispatch = useDispatchCart();
-  let data = useCart();
-  const priceRef = useRef();
+  let data = useCart(); 
+  const priceRef = useRef(); // gave a reference to the prize  useref is a hook
   let options = props.options;
   let priceOptions = Object.keys(options); //half or full // regular or medium or large
 
@@ -74,11 +74,11 @@ export default function Card(props) {
             src={props.foodItem.img}
             className="card-img-top"
             alt="..."
-            style={{ height: "150px", objectFit: "fill" }}
+            style={{ height: "152px", objectFit: "fill" }}
           />
           <div className="card-body">
             <h5 className="card-title">{props.foodItem.name}</h5>
-            {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+         
             <div className=" w-100">
               <select
                 className="m-2 h-100 bg-light rounded"
@@ -94,7 +94,7 @@ export default function Card(props) {
               </select>
               <select
                 className="m-2 h-100  bg-light rounded"// bg-light
-                ref={priceRef}
+                ref={priceRef} // 
                 onChange={(e) => setSize(e.target.value)}
               >
                 {priceOptions.map((data) => {

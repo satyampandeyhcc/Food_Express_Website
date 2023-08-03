@@ -42,6 +42,8 @@ export default function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto mb-2">
+              {" "}
+              {/* // me-auto login and signup in right side */}
               <li className="nav-item">
                 <Link
                   className="nav-link active fs-5"
@@ -51,7 +53,7 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-              {localStorage.getItem("authToken") ? (
+              {localStorage.getItem("authToken") ? ( // authtoken is exist then we see myorder otherwise we see login and signup
                 <li className="nav-item">
                   <Link
                     className="nav-link active fs-5"
@@ -66,7 +68,7 @@ export default function Navbar() {
               )}
             </ul>
 
-            {!localStorage.getItem("authToken") ? (
+            {!localStorage.getItem("authToken") ? ( //authtoken is not  exist then  we see login and signup
               <div className="d-flex">
                 <Link className="btn bg-white text-danger mx-1" to="/login">
                   Login
