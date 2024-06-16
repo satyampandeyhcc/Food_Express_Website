@@ -4,7 +4,9 @@ const CartStateContext = createContext();
 const CartDispatchContext = createContext();
 
 const reducer = (state, action) => {
-  switch (action.type) { // Defacto use like a market
+  switch (
+    action.type // Defacto use like a market
+  ) {
     case "ADD":
       return [
         ...state,
@@ -18,23 +20,24 @@ const reducer = (state, action) => {
         },
       ];
     case "REMOVE":
-      let newArr = [...state];//We do not directly remove the data  
+      let newArr = [...state]; //We do not directly remove the data
       newArr.splice(action.index, 1);
       return newArr;
+
     case "UPDATE":
-      let arr = [...state];
-      arr.find((food, index) => {
-        if (food.id === action.id) {
-          //  console.log(food.qty, parseInt(action.qty), action.price + food.price)
-          arr[index] = {
+      return state.map((food) => {
+        console.log(food.size);
+        console.log(action);
+        if (food.id === action.id && food.size === action.size) {
+          return {
             ...food,
-            qty: parseInt(action.qty) + food.qty,
+            qty: parseInt(action.qty) + parseInt(food.qty),
             price: action.price + food.price,
           };
         }
-        return arr;
+        return food;
       });
-      return arr;
+
     case "DROP":
       let empArray = [];
       return empArray;

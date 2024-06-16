@@ -29,7 +29,7 @@ export default function MyOrder() {
 
   useEffect(() => {
     fetchMyOrder();
-  }, []);//on first render fetchmyorder is call in useEffect this is the occur only one times not many times because here dependency is not availabel.
+  }, []); //on first render fetchmyorder is call in useEffect this is the occur only one times not many times because here dependency is not availabel.
 
   return (
     <div>
@@ -39,7 +39,7 @@ export default function MyOrder() {
 
       <div className="container">
         <div className="row">
-          {orderData !== {}
+          {orderData != {}
             ? Array(orderData).map((data) => {
                 return data.orderData
                   ? data.orderData.order_data

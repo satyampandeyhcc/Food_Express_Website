@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
-import { useDispatchCart, useCart } from "../components/ContextReducer";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -19,7 +18,7 @@ export default function Home() {
 
     response = await response.json();
 
-    // console.log(response[0], response[1]);
+    console.log(response[0], response[1]);
     setFoodItem(response[0]);
     setFoodCat(response[1]);
   };
@@ -55,12 +54,12 @@ export default function Home() {
                     setSearch(e.target.value);
                   }}
                 />
-                {/* <button class="btn btn-outline-success text-white bg-success" type="submit">Search</button> */}
+            
               </div>
             </div>
             <div className="carousel-item active">
               <img
-                src="https://source.unsplash.com/random/900X700/?burger"
+                src="https://img.freepik.com/free-photo/exploding-burger-with-vegetables-melted-cheese-black-background-generative-ai_157027-1734.jpg"
                 className="d-block w-100"
                 alt="..."
                 style={{ filter: "brightness(30%)" }}
@@ -68,7 +67,7 @@ export default function Home() {
             </div>
             <div className="carousel-item">
               <img
-                src="https://source.unsplash.com/random/900X700/?Pastry"
+                src="https://img.freepik.com/free-photo/top-view-pepperoni-pizza-sliced-into-six-slices_141793-2157.jpg?t=st=1718526386~exp=1718529986~hmac=4e0fca5ecea67dba36f9948cd6369d9a61aed36de4ba78b7fc2f6769a25647c0&w=996"
                 className="d-block w-100"
                 alt="..."
                 style={{ filter: "brightness(30%)" }}
@@ -76,7 +75,7 @@ export default function Home() {
             </div>
             <div className="carousel-item">
               <img
-                src="https://source.unsplash.com/random/900X700/?barbeque"
+                src="https://img.freepik.com/free-photo/crop-hand-pointing-blackboard-near-food_23-2147740728.jpg?t=st=1718526549~exp=1718530149~hmac=c0a37fd25eff4d9d430894564f4ef8920fa7123d08d8620710046c7f55ec177b&w=996"
                 className="d-block w-100"
                 alt="..."
                 style={{ filter: "brightness(30%)" }}
@@ -111,7 +110,7 @@ export default function Home() {
       </div>
 
       <div className="container">
-        {foodCat !== []
+        {foodCat != []
           ? foodCat.map((data) => {
               return (
                 <div className="row mb-3">
@@ -120,7 +119,7 @@ export default function Home() {
                   </div>
                   <hr />
 
-                  {foodItem !== [] ? (
+                  {foodItem != [] ? (
                     foodItem
                       .filter((item) => {
                         return (

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
+import { message } from "antd";
+
 export default function Signup() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -11,9 +13,8 @@ export default function Signup() {
     geolocation: "",
   });
   const handleSubmit = async (e) => {
-
     e.preventDefault(); //preventDefault is aSynthetic Event.
-   
+
     const response = await fetch("http://localhost:5000/api/createuser", {
       method: "POST",
       headers: {
@@ -28,11 +29,10 @@ export default function Signup() {
     });
     const json = await response.json();
 
-
     if (!json.success) {
-      
-      alert("Enter valid credentials!!");
+      message.info("Enter valid credentials!!");
     } else {
+      // message.info("")
       navigate("/login");
     }
   };

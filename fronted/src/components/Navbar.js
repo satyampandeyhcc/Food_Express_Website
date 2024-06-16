@@ -53,7 +53,7 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-              {localStorage.getItem("authToken") ? (// authtoken is exist then we see myorder otherwise we see login and signup
+              {localStorage.getItem("authToken") ? ( // authtoken is exist then we see myorder otherwise we see login and signup
                 <li className="nav-item">
                   <Link
                     className="nav-link active fs-5"

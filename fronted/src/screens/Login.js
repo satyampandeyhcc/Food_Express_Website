@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+// import 'antd/dist/antd.css';
+import { message } from "antd";
 
 export default function Login() {
   let navigate = useNavigate();
@@ -22,19 +24,18 @@ export default function Login() {
     //console.log(json);
 
     if (json.success) {
-      
-  
       //  console.log("In login comp email is :", credentials.email);
-      localStorage.setItem("authToken", json.authToken);//header is same but littlebeat is different so every time we login then differnt authtoken will be generated.
+      localStorage.setItem("authToken", json.authToken); //header is same but littlebeat is different so every time we login then differnt authtoken will be generated.
       //but we can verify from secretkey with auttoken which is generated slightly different. that means verification is correct because we do a correct signature or secretkey.
       localStorage.setItem("userEmail", credentials.email);
+      message.info("You are login successfully");
       //  console.log(localStorage.getItem("authToken"));//authorization token in console
       //The localStorage.setItem() method is used to store data in the browser's localStorage. It takes two parameters: the key and the value.
-          //In this case, the key is set as "authToken", and the value is retrieved from the json object using json.authToken.
-      navigate("/");//Navigate to homepage
+      //In this case, the key is set as "authToken", and the value is retrieved from the json object using json.authToken.
+      navigate("/"); //Navigate to homepage
     } // this success part is given in backend of createuser endpoint
     else {
-      alert("Enter valid credentials!!");
+      message.info("Enter valid credentials!!");
     }
   };
 

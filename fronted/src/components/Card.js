@@ -3,61 +3,55 @@ import { useDispatchCart, useCart } from "./ContextReducer";
 
 export default function Card(props) {
   let dispatch = useDispatchCart();
-  let data = useCart(); 
+  let data = useCart();
   const priceRef = useRef(); // gave a reference to the prize  useref is a hook
   let options = props.options;
   let priceOptions = Object.keys(options); //half or full // regular or medium or large
 
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("");
-  let foodItem = props.item;
-  const handleAddToCart = async () => {
-    let food = [];
-    for (const item of data) {
-      if (item.id === props.foodItem._id) {
-        food = item;
 
-        break;
-      }
-    }
-    //console.log(food)
-    //console.log(new Date())
-    // Update functionality began
-    if (food !== []) {
-      if (food.size === size) {
+  const handleAddToCart = async (id) => {
+    const existingFoodItem = data.find(
+      (item) => item.id === id && item.size === size
+    );
+
+    console.log(existingFoodItem);
+    console.log(12);
+
+    if (existingFoodItem) {
+      if (existingFoodItem.size === size) {
         await dispatch({
           type: "UPDATE",
-          id: props.foodItem._id,
+          id: id,
           price: finalPrice,
           qty: qty,
+          size: size,
         });
         return;
-      } else if (food.size !== size) {
+      } else {
         await dispatch({
           type: "ADD",
-          id: props.foodItem._id,
+          id: id,
           name: props.foodItem.name,
           price: finalPrice,
           qty: qty,
           size: size,
-          img: props.ImgSrc,
+          img: props.foodItem.img,
         });
-        // console.log("Size different so simply ADD one more to the list")
         return;
       }
-      return;
+    } else {
+      await dispatch({
+        type: "ADD",
+        id: id,
+        name: props.foodItem.name,
+        price: finalPrice,
+        qty: qty,
+        size: size,
+        img: props.foodItem.img,
+      });
     }
-
-    await dispatch({
-      type: "ADD",
-      id: props.foodItem._id,
-      name: props.foodItem.name,
-      price: finalPrice,
-      qty: qty,
-      size: size,
-    });
-
-    // setBtnEnable(true)
   };
 
   let finalPrice = qty * parseInt(options[size]);
@@ -79,7 +73,7 @@ export default function Card(props) {
           />
           <div className="card-body">
             <h5 className="card-title">{props.foodItem.name}</h5>
-         
+
             <div className=" w-100">
               <select
                 className="m-2 h-100 bg-light rounded"
@@ -94,8 +88,8 @@ export default function Card(props) {
                 })}
               </select>
               <select
-                className="m-2 h-100  bg-light rounded"// bg-light
-                ref={priceRef} // 
+                className="m-2 h-100  bg-light rounded" // bg-light
+                ref={priceRef} //
                 onChange={(e) => setSize(e.target.value)}
               >
                 {priceOptions.map((data) => {
@@ -112,7 +106,8 @@ export default function Card(props) {
           <hr />
           <button
             className="btn btn-danger justify-center w-50 mb-3 mx-3"
-            onClick={handleAddToCart}
+            // onClick={handleAddToCart}
+            onClick={() => handleAddToCart(props.foodItem._id)}
           >
             Add to Cart
           </button>
